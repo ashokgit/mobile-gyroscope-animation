@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+</head>
+<body>
+	X: <input type="range" id="x" min="-360" max="360" value="7" onchange="rotate()" />
+	Y: <input type="range" id="y" min="-360" max="360" value="7" onchange="rotate()" />
+	Z: <input type="range" id="z" min="-360" max="360" value="7" onchange="rotate()" />
+	<section class="container">
+		<div id="cube">
+			<figure class="front">
+				<video width="100%" height="100%" controls>
+				  <source src="movie.mp4" type="video/mp4">
+				</video>
+			</figure>
+			<figure class="back"></figure>
+			<figure class="right"></figure>
+			<figure class="left"></figure>
+			<figure class="top"></figure>
+			<figure class="bottom"></figure>
+		</div>
+	</section>
+<script> 
+function rotate(value)
+{
+	xvalue = $("#x").val();
+	yvalue = $("#y").val();
+	zvalue = $("#z").val();
+document.getElementById('cube').style.webkitTransform="rotateX("+xvalue+"deg) rotateY("+yvalue+"deg) rotateZ(" + zvalue + "deg)";
+document.getElementById('cube').style.msTransform="rotateX("+xvalue+"deg) rotateY("+yvalue+"deg) rotateZ(" + zvalue + "deg)";
+document.getElementById('cube').style.MozTransform="rotateX("+xvalue+"deg) rotateY("+yvalue+"deg) rotateZ(" + zvalue + "deg)";
+document.getElementById('cube').style.OTransform="rotateX("+xvalue+"deg) rotateY("+yvalue+"deg) rotateZ(" + zvalue + "deg)";
+document.getElementById('cube').style.transform="rotateX("+xvalue+"deg) rotateY("+yvalue+"deg) rotateZ(" + zvalue + "deg)";
+}
+
+</script> 
+</body>
+</html>
+

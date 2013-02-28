@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+</head>
+<body>
+	<div id="vx"></div><div id="vy"></div><div id="vz"></div>
+	<section class="container">
+		<div id="cube">
+			<figure class="front">
+				<video width="100%" height="100%" controls>
+				  <source src="movie.mp4" type="video/mp4">
+				</video>
+			</figure>
+			<figure class="back"></figure>
+			<figure class="right"></figure>
+			<figure class="left"></figure>
+			<figure class="top"></figure>
+			<figure class="bottom"></figure>
+		</div>
+	</section>
+<script type="text/javascript">
+init2();
+function init(){
+ if(window.DeviceMotionEvent){
+  console.log("DeviceMotionEvent supported");
+  }else if('listenForDeviceMovement'in window){
+   console.log("DeviceMotionEvent supported [listenForDeviceMovement]");}
+ }
+function init2(){
+ if((window.DeviceMotionEvent)||('listenForDeviceMovement'in window)){
+  window.addEventListener('devicemotion',deviceMotionHandler3,false);}
+ else{
+  document.getElementById("dmEvent").innerHTML="Not supported on your device or browser.  Sorry."}
+ }
+function deviceMotionHandler3(eventData){
+ var acceleration=(eventData.accelerationIncludingGravity);
+ var rawAcceleration="["+Math.round(acceleration.x)+", "+Math.round(acceleration.y)+", "+Math.round(acceleration.z)+"]";
+ 	var xvalue1 = (acceleration.x)/9.8;
+	var yvalue1 = (acceleration.y)/9.8;
+	var zvalue1 = (acceleration.z)/9.8;
+	var facingUp=+1;
+	//if(acceleration.z>0){facingUp=+1;}
+	xvalue = yvalue1*90*facingUp;
+	yvalue = xvalue1*90*facingUp;
+	zvalue = zvalue1*0*facingUp;
+	
+	//document.getElementById('vx').innerHTML = xvalue;
+	//document.getElementById('vy').innerHTML = yvalue;
+	//document.getElementById('vz').innerHTML = zvalue;
+	
+	document.getElementById('cube').style.webkitTransform="rotateX("+xvalue+"deg) rotateY("+yvalue+"deg) rotateZ(" + zvalue + "deg)";
+	document.getElementById('cube').style.msTransform="rotateX("+xvalue+"deg) rotateY("+yvalue+"deg) rotateZ(" + zvalue + "deg)";
+	document.getElementById('cube').style.MozTransform="rotateX("+xvalue+"deg) rotateY("+yvalue+"deg) rotateZ(" + zvalue + "deg)";
+	document.getElementById('cube').style.OTransform="rotateX("+xvalue+"deg) rotateY("+yvalue+"deg) rotateZ(" + zvalue + "deg)";
+	document.getElementById('cube').style.transform="rotateX("+xvalue+"deg) rotateY("+yvalue+"deg) rotateZ(" + zvalue + "deg)";
+
+}
+ </script>
+</body>
+</html>
